@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -18,19 +19,23 @@ namespace CefTest
         ChromiumWebBrowser browser = null;
         StringBuilder cookies = new StringBuilder();
 
+        string url;//URL
+        string user;//账号
+        string password;//密码
+
         public Form1()
         {
             InitializeComponent();
-            InitBrowser();
         }
 
         /// <summary>
         /// 初始化浏览器
         /// </summary>
-        public void InitBrowser() {
+        public void InitBrowser()
+        {
 
             var browerSetting = new CefSettings();
-           
+
             //指定cookie的存储地方
             //browerSetting.CachePath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)+@"\mycef";
 
@@ -39,32 +44,35 @@ namespace CefTest
 
             Cef.Initialize(browerSetting);
 
-            browser = new ChromiumWebBrowser("https://sellercentral.amazon.com/gp/homepage.html");
+            browser = new ChromiumWebBrowser(url);
             browser.LifeSpanHandler = new TestLifeSpanHandler();
 
             //在页面右键菜单中启用或关闭开发者工具，仅限于调试目的
             browser.MenuHandler = new MenuHandler();
-            
+
 
             var eventObject = new AmazonEventBindingObject();
-            eventObject.ABName = "你的账号";
-            eventObject.ABPassword = "你的密码";
+            eventObject.ABName = user;
+            eventObject.ABPassword =password;
             eventObject.EventArrived += OnJavascriptEventArrived;
-            browser.RegisterJsObject("amazonBoundEvent", eventObject);
-            
+            browser.RegisterJsObject("el-form login", eventObject);
+
             browser.FrameLoadEnd += Browser_FrameLoadEnd;
-            
+
 
             this.Controls.Add(browser);
 
             browser.Dock = DockStyle.Fill;
+            
         }
 
-        public bool setCookies(string domain, string name, string value, DateTime ExpiresTime) {
+        public bool setCookies(string domain, string name, string value, DateTime ExpiresTime)
+        {
 
             var cookieManager = Cef.GetGlobalCookieManager();
 
-            var setTask = cookieManager.SetCookieAsync("https://" + domain, new CefSharp.Cookie() {
+            var setTask = cookieManager.SetCookieAsync("https://" + domain, new CefSharp.Cookie()
+            {
                 Domain = domain,
                 Name = name,
                 Value = value,
@@ -74,7 +82,8 @@ namespace CefTest
             setTask.Wait();
 
 
-            if (setTask.IsCompleted) {
+            if (setTask.IsCompleted)
+            {
 
             }
 
@@ -95,7 +104,7 @@ namespace CefTest
         private void Browser_FrameLoadEnd(object sender, FrameLoadEndEventArgs e)
         {
             var cookieManager = Cef.GetGlobalCookieManager();
-            
+
             //读取Cookie
             CookieVisitor visitor = new CookieVisitor();
             visitor.SendCookie += visitor_SendCookie;
@@ -117,7 +126,8 @@ namespace CefTest
 
 
             //执行Javascript代码
-            if (e.Frame.IsMain) {
+            if (e.Frame.IsMain)
+            {
                 browser.ExecuteScriptAsync(@"
 
  (function () {
@@ -160,7 +170,7 @@ namespace CefTest
 
 
             }
-            
+
 
         }
 
@@ -192,6 +202,16 @@ namespace CefTest
                         break;
                     }
             }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            url = ConfigurationManager.AppSettings["url"];
+            user = ConfigurationManager.AppSettings["usr"];
+            password = ConfigurationManager.AppSettings["pwd"];
+            this.FormBorderStyle = FormBorderStyle.None;     //设置窗体为无边框样式
+            this.WindowState = FormWindowState.Maximized;    //最大化窗体 
+            InitBrowser();
         }
     }
 }

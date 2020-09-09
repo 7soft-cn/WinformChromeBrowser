@@ -1392,3 +1392,33 @@
 [0511/161705:WARNING:resource_bundle.cc(509)] locale resources are not loaded
 [0511/161705:WARNING:resource_bundle.cc(311)] locale_file_path.empty() for locale 
 [0511/161705:ERROR:main_delegate.cc(724)] Could not load locale pak for en-US
+[0909/170455:WARNING:webrtcvoiceengine.cc(330)] Unexpected codec: PCMU/8000/2 (110)
+[0909/170455:WARNING:webrtcvoiceengine.cc(330)] Unexpected codec: PCMA/8000/2 (118)
+[0909/170455:WARNING:webrtcvoiceengine.cc(330)] Unexpected codec: G722/8000/2 (119)
+[0909/170455:ERROR:webrtcsession.cc(1446)] ConnectDataChannel called when data_channel_ is NULL.
+[0909/170455:WARNING:mediasession.cc(393)] Duplicate id found. Reassigning from 101 to 127
+[0909/171433:WARNING:webrtcvoiceengine.cc(330)] Unexpected codec: PCMU/8000/2 (110)
+[0909/171433:WARNING:webrtcvoiceengine.cc(330)] Unexpected codec: PCMA/8000/2 (118)
+[0909/171433:WARNING:webrtcvoiceengine.cc(330)] Unexpected codec: G722/8000/2 (119)
+[0909/171434:ERROR:webrtcsession.cc(1446)] ConnectDataChannel called when data_channel_ is NULL.
+[0909/171434:WARNING:mediasession.cc(393)] Duplicate id found. Reassigning from 101 to 127
+[0909/172008:WARNING:webrtcvoiceengine.cc(330)] Unexpected codec: PCMU/8000/2 (110)
+[0909/172008:WARNING:webrtcvoiceengine.cc(330)] Unexpected codec: PCMA/8000/2 (118)
+[0909/172008:WARNING:webrtcvoiceengine.cc(330)] Unexpected codec: G722/8000/2 (119)
+[0909/172008:ERROR:webrtcsession.cc(1446)] ConnectDataChannel called when data_channel_ is NULL.
+[0909/172008:WARNING:mediasession.cc(393)] Duplicate id found. Reassigning from 101 to 127
+[0909/172123:WARNING:webrtcvoiceengine.cc(330)] Unexpected codec: PCMU/8000/2 (110)
+[0909/172123:WARNING:webrtcvoiceengine.cc(330)] Unexpected codec: PCMA/8000/2 (118)
+[0909/172123:WARNING:webrtcvoiceengine.cc(330)] Unexpected codec: G722/8000/2 (119)
+[0909/172124:ERROR:webrtcsession.cc(1446)] ConnectDataChannel called when data_channel_ is NULL.
+[0909/172124:WARNING:mediasession.cc(393)] Duplicate id found. Reassigning from 101 to 127
+[0909/172203:WARNING:webrtcvoiceengine.cc(330)] Unexpected codec: PCMU/8000/2 (110)
+[0909/172203:WARNING:webrtcvoiceengine.cc(330)] Unexpected codec: PCMA/8000/2 (118)
+[0909/172203:WARNING:webrtcvoiceengine.cc(330)] Unexpected codec: G722/8000/2 (119)
+[0909/172203:ERROR:webrtcsession.cc(1446)] ConnectDataChannel called when data_channel_ is NULL.
+[0909/172203:WARNING:mediasession.cc(393)] Duplicate id found. Reassigning from 101 to 127
+[0909/172659:WARNING:webrtcvoiceengine.cc(330)] Unexpected codec: PCMU/8000/2 (110)
+[0909/172659:WARNING:webrtcvoiceengine.cc(330)] Unexpected codec: PCMA/8000/2 (118)
+[0909/172659:WARNING:webrtcvoiceengine.cc(330)] Unexpected codec: G722/8000/2 (119)
+[0909/172659:ERROR:webrtcsession.cc(1446)] ConnectDataChannel called when data_channel_ is NULL.
+[0909/172659:WARNING:mediasession.cc(393)] Duplicate id found. Reassigning from 101 to 127
