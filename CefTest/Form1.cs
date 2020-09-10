@@ -56,7 +56,6 @@ namespace CefTest
             eventObject.ABPassword =password;
             eventObject.EventArrived += OnJavascriptEventArrived;
             browser.RegisterJsObject("el-form login", eventObject);
-
             browser.FrameLoadEnd += Browser_FrameLoadEnd;
 
 
