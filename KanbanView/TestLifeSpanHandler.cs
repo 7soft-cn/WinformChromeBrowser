@@ -5,7 +5,7 @@ using System.Text;
 using CefSharp;
 using CefSharp.WinForms;
 
-namespace CefTest
+namespace Kanbanview
 {
     /// <summary>
     /// 控制弹出窗体

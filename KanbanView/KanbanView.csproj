@@ -9,8 +9,8 @@
     <ProjectGuid>{8FB18AC4-CAC4-4C51-9A9E-CF888671796F}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CefTest</RootNamespace>
-    <AssemblyName>CefTest</AssemblyName>
+    <RootNamespace>Kanbanview</RootNamespace>
+    <AssemblyName>Kanbanview</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
@@ -21,7 +21,7 @@
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
-    <UpdateMode>Background</UpdateMode>
+    <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
@@ -29,10 +29,12 @@
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>http://192.168.3.21/AutoRun/</InstallUrl>
     <UpdateUrl>http://192.168.3.21/AutoRun/</UpdateUrl>
+    <ProductName>看板</ProductName>
+    <PublisherName>7soft.cn</PublisherName>
     <MinimumRequiredVersion>1.0.0.7</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>index.html</WebPage>
-    <ApplicationRevision>8</ApplicationRevision>
+    <ApplicationRevision>9</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -132,6 +134,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -144,11 +147,11 @@
     <Compile Include="AmazonEventBindingObject.cs" />
     <Compile Include="ChromeCookieReader.cs" />
     <Compile Include="CookieVisitor.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="FormView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="FormView.Designer.cs">
+      <DependentUpon>FormView.cs</DependentUpon>
     </Compile>
     <Compile Include="FormStart.cs">
       <SubType>Form</SubType>
@@ -159,8 +162,8 @@
     <Compile Include="MenuHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="TestLifeSpanHandler.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="FormView.resx">
+      <DependentUpon>FormView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormStart.resx">
       <DependentUpon>FormStart.cs</DependentUpon>

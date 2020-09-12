@@ -1,6 +1,6 @@
-﻿namespace CefTest
+﻿namespace Kanbanview
 {
-    partial class Form1
+    partial class FormView
     {
         /// <summary>
         /// 必需的设计器变量。

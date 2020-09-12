@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CefSharp;
 
-namespace CefTest
+namespace Kanbanview
 {
     public class CookieVisitor : ICookieVisitor
     {

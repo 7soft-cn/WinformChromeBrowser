@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using CefSharp;
 
-namespace CefTest
+namespace Kanbanview
 {
     public class MenuHandler : IContextMenuHandler
     {

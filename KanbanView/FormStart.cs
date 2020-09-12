@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace CefTest
+namespace Kanbanview
 {
     public partial class FormStart : Form
     {
@@ -30,28 +30,45 @@ namespace CefTest
 
         private void timerRetry_Tick(object sender, EventArgs e)
         {
-            var url = ConfigurationManager.AppSettings["url"];
-            //如果可以访问服务器，则打开另一窗口
-            if (CheckNetPing(url) || UrlCheck(url))
+            timerRetry.Stop();
+            try
+            {
+                var url = ConfigurationManager.AppSettings["url"];
+                //如果可以访问服务器，则打开另一窗口
+                if (CheckNetPing(url) || UrlCheck(url))
+                {
+
+                    var path = GetPath(ConfigurationManager.AppSettings["BrowserName"]);
+                    if (string.IsNullOrEmpty(path))
+                    {
+                        MessageBox.Show($"找不到[{path}]程序路径");
+                    }
+                    var Arguments = ConfigurationManager.AppSettings["Arguments"];
+                    if (Arguments.Contains("{url}"))
+                    {
+                        Arguments = Arguments.Replace("{url}", url);
+                    }
+                    System.Diagnostics.Process p = new System.Diagnostics.Process();
+                    p.StartInfo.FileName = path;
+                    p.StartInfo.Arguments = Arguments;
+                    p.StartInfo.UseShellExecute = false;    //是否使用操作系统shell启动
+                    p.StartInfo.RedirectStandardInput = true;//接受来自调用程序的输入信息
+                    p.StartInfo.RedirectStandardOutput = true;//由调用程序获取输出信息
+                    p.StartInfo.RedirectStandardError = true;//重定向标准错误输出
+                    p.StartInfo.CreateNoWindow = true;//不显示程序窗口
+                    p.Start();//启动程序
+                              //var th = new Thread(new ThreadStart(StartMainForm));
+                              //th.Start();
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
             {
 
-                var path = GetPath(ConfigurationManager.AppSettings["BrowserName"]);
-                if (string.IsNullOrEmpty(path))
-                {
-                    MessageBox.Show($"找不到[{path}]程序路径");
-                }
-                System.Diagnostics.Process p = new System.Diagnostics.Process();
-                p.StartInfo.FileName = path;
-                p.StartInfo.Arguments = ConfigurationManager.AppSettings["Arguments"];
-                p.StartInfo.UseShellExecute = false;    //是否使用操作系统shell启动
-                p.StartInfo.RedirectStandardInput = true;//接受来自调用程序的输入信息
-                p.StartInfo.RedirectStandardOutput = true;//由调用程序获取输出信息
-                p.StartInfo.RedirectStandardError = true;//重定向标准错误输出
-                p.StartInfo.CreateNoWindow = true;//不显示程序窗口
-                p.Start();//启动程序
-                //var th = new Thread(new ThreadStart(StartMainForm));
-                //th.Start();
-                this.Close();
+            }
+            finally
+            {
+                timerRetry.Start();
             }
         }
 
@@ -99,7 +116,7 @@ namespace CefTest
         [STAThread]
         private static void StartMainForm()
         {
-            Form1 form2 = new Form1();
+            FormView form2 = new FormView();
             Application.Run(form2);
         }
 
@@ -109,17 +126,14 @@ namespace CefTest
 //            return true;
 //#endif
             Ping pingSender = new Ping();
-            PingReply reply = null;
             try
             {
-                //http://192.168.1.68/Emes-CQRT-ESOPCLIENT/#/
-                //var url = ConfigurationManager.AppSettings["url"];
                 var host = url.Split('/')[2];
                 if (host.Contains(":"))
                 {
                     host = host.Split(':')[0];
                 }
-                reply = pingSender.Send(host, 3000);
+                PingReply reply = pingSender.Send(host, 1000);
                 if (reply.Status == IPStatus.Success)
                 {
                     return true;
@@ -145,7 +159,7 @@ namespace CefTest
             {
                 HttpWebRequest myRequest = (HttpWebRequest)WebRequest.Create(strUrl);
                 myRequest.Method = "HEAD";
-                myRequest.Timeout = 10000;  //超时时间10秒
+                myRequest.Timeout = 2000;  //超时时间2秒
                 HttpWebResponse res = (HttpWebResponse)myRequest.GetResponse();
                 return (res.StatusCode == HttpStatusCode.OK);
             }

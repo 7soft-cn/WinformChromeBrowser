@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 //using System.Data.SQLite;
 
-namespace CefTest
+namespace Kanbanview
 {
     public class ChromeCookieReader
     {

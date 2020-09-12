@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 
-namespace CefTest
+namespace Kanbanview
 {
     static class Program
     {

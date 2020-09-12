@@ -12,9 +12,9 @@ using CefSharp;
 using CefSharp.WinForms;
 
 
-namespace CefTest
+namespace Kanbanview
 {
-    public partial class Form1 : Form
+    public partial class FormView : Form
     {
         ChromiumWebBrowser browser = null;
         StringBuilder cookies = new StringBuilder();
@@ -23,7 +23,7 @@ namespace CefTest
         string user;//账号
         string password;//密码
 
-        public Form1()
+        public FormView()
         {
             InitializeComponent();
         }
@@ -44,20 +44,25 @@ namespace CefTest
 
             Cef.Initialize(browerSetting);
 
-            browser = new ChromiumWebBrowser(url);
-            browser.LifeSpanHandler = new TestLifeSpanHandler();
+            browser = new ChromiumWebBrowser(url)
+            {
+                LifeSpanHandler = new TestLifeSpanHandler(),
 
-            //在页面右键菜单中启用或关闭开发者工具，仅限于调试目的
-            browser.MenuHandler = new MenuHandler();
+                //在页面右键菜单中启用或关闭开发者工具，仅限于调试目的
+                MenuHandler = new MenuHandler()
+            };
 
 
-            var eventObject = new AmazonEventBindingObject();
-            eventObject.ABName = user;
-            eventObject.ABPassword =password;
-            eventObject.EventArrived += OnJavascriptEventArrived;
-            browser.RegisterJsObject("el-form login", eventObject);
-            browser.FrameLoadEnd += Browser_FrameLoadEnd;
-
+            //var eventObject = new AmazonEventBindingObject();
+            //eventObject.ABName = user;
+            //eventObject.ABPassword =password;
+            //eventObject.EventArrived += OnJavascriptEventArrived;
+            //browser.RegisterJsObject("el-form login", eventObject);
+            //browser.FrameLoadEnd += Browser_FrameLoadEnd;
+            setCookies("http://192.168.102.20:8002", "loginFlag","1",DateTime.Now.AddMonths(1));
+            setCookies("http://192.168.102.20:8002", "loginName", "sys", DateTime.Now.AddMonths(1));
+            setCookies("http://192.168.102.20:8002", "password", "123456", DateTime.Now.AddMonths(1));
+            setCookies("http://192.168.102.20:8002", "companyAndUserName", "{%22OpenId%22:%22sys%22%2C%22Token%22:%2210025f30-ab79-4a8c-b2cc-3016b847ae62%22%2C%22TokenExpires%22:172800%2C%22TokenCreateTime%22:%222020-09-12T12:30:06.3095468+08:00%22%2C%22USER_ID%22:%220f8f176a-753d-4812-8b98-d75826dedda2%22%2C%22USER_NAME%22:%22%E7%AE%A1%E7%90%86%E5%91%98%22%2C%22USER_NUM%22:%22%22%2C%22USER_PWD%22:%22E10ADC3949BA59ABBE56E057F20F883E%22%2C%22SEX%22:%22%E7%94%B7%22%2C%22MOBILE%22:%2213815653259%22%2C%22ENABLE%22:%221%22%2C%22IP%22:%22192.168.102.20%22%2C%22PROJECT_TYPE%22:%22SINGLE%22}", DateTime.Now.AddMonths(1));
 
             this.Controls.Add(browser);
 
@@ -65,14 +70,18 @@ namespace CefTest
             
         }
 
-        public bool setCookies(string domain, string name, string value, DateTime ExpiresTime)
+        public bool setCookies(string host, string name, string value, DateTime ExpiresTime)
         {
 
+            //            value = @"configIp=192.168.102.20; IP=192.168.102.20; 
+            //loginFlag=1; 
+            //companyAndUserName={%22OpenId%22:%22sys%22%2C%22Token%22:%2210025f30-ab79-4a8c-b2cc-3016b847ae62%22%2C%22TokenExpires%22:172800%2C%22TokenCreateTime%22:%222020-09-12T12:30:06.3095468+08:00%22%2C%22USER_ID%22:%220f8f176a-753d-4812-8b98-d75826dedda2%22%2C%22USER_NAME%22:%22%E7%AE%A1%E7%90%86%E5%91%98%22%2C%22USER_NUM%22:%22%22%2C%22USER_PWD%22:%22E10ADC3949BA59ABBE56E057F20F883E%22%2C%22SEX%22:%22%E7%94%B7%22%2C%22MOBILE%22:%2213815653259%22%2C%22ENABLE%22:%221%22%2C%22IP%22:%22192.168.102.20%22%2C%22PROJECT_TYPE%22:%22SINGLE%22};
+            //loginName=sys; password=123456";
             var cookieManager = Cef.GetGlobalCookieManager();
 
-            var setTask = cookieManager.SetCookieAsync("https://" + domain, new CefSharp.Cookie()
+            var setTask = cookieManager.SetCookieAsync(host, new CefSharp.Cookie()
             {
-                Domain = domain,
+                Domain = host,
                 Name = name,
                 Value = value,
                 Expires = ExpiresTime

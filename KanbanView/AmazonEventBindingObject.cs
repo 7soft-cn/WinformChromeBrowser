@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CefTest
+namespace Kanbanview
 {
     /// <summary>
     /// 亚马逊登录绑定对象

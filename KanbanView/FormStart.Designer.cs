@@ -1,4 +1,4 @@
-﻿namespace CefTest
+﻿namespace Kanbanview
 {
     partial class FormStart
     {
