@@ -5,9 +5,10 @@
     <section name="entityFramework" type="System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
   </configSections>
 	<appSettings>
-		<add key="url" value="http://192.168.1.68/Emes-CQRT-ESOPCLIENT/#/"/>
-		<add key="BrowserName" value="360se"/>
-		<add key="Arguments" value="--kiosk  https://www.baidu.com/"/>
+		<!--<add key="url" value="http://192.168.1.68/Emes-CQRT-ESOPCLIENT/#/"/>-->
+		<add key="url" value="http://192.168.102.20:8002/#/"/>
+		<add key="BrowserName" value="360chrome"/>
+		<add key="Arguments" value="--kiosk http://192.168.102.20:8002/#/"/>
 		<add key="usr" value="admin"/>
 		<add key="pwd" value="admin"/>
 	</appSettings>

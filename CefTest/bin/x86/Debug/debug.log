@@ -1422,3 +1422,9 @@
 [0909/172659:WARNING:webrtcvoiceengine.cc(330)] Unexpected codec: G722/8000/2 (119)
 [0909/172659:ERROR:webrtcsession.cc(1446)] ConnectDataChannel called when data_channel_ is NULL.
 [0909/172659:WARNING:mediasession.cc(393)] Duplicate id found. Reassigning from 101 to 127
+[0910/141836:WARNING:webrtcvoiceengine.cc(330)] Unexpected codec: PCMU/8000/2 (110)
+[0910/141836:WARNING:webrtcvoiceengine.cc(330)] Unexpected codec: PCMA/8000/2 (118)
+[0910/141836:WARNING:webrtcvoiceengine.cc(330)] Unexpected codec: G722/8000/2 (119)
+[0910/141836:ERROR:webrtcsession.cc(1446)] ConnectDataChannel called when data_channel_ is NULL.
+[0910/141836:WARNING:mediasession.cc(393)] Duplicate id found. Reassigning from 101 to 127
+[0912/080902:WARNING:dns_config_service_win.cc(674)] Failed to read DnsConfig.
