@@ -77,9 +77,9 @@ namespace CefTest
                 }
                 else
                 {
-                    if (softName == "360se")
+                    if (softName == "360chrome")
                     {
-                        return "C:\\Users\\Administrator\\AppData\\Roaming\\360se6\\Application\\360se.exe";
+                        return GetPath("chrome");
                     }
                     else
                     {
