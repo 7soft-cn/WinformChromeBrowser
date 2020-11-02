@@ -69,6 +69,9 @@ namespace Kanbanview
             finally
             {
                 timerRetry.Start();
+#if DEBUG
+                timerRetry.Enabled = false;
+#endif
             }
         }
 
@@ -94,19 +97,19 @@ namespace Kanbanview
                 }
                 else
                 {
-                    if (softName == "360chrome")
-                    {
-                        return GetPath("chrome");
-                    }
-                    else
-                    {
-                        return "";
-                    }
+                    return "";
                 }
             }
             catch
             {
-                return "";
+                if (softName.Contains("chrome"))//如果配置chorme内核的浏览器，但电脑实际上没有安装，那么原生chrome也可以兼容
+                {
+                    return GetPath("chrome");
+                }
+                else
+                {
+                    return "";
+                }
             }
         }
 
@@ -158,12 +161,12 @@ namespace Kanbanview
             try
             {
                 HttpWebRequest myRequest = (HttpWebRequest)WebRequest.Create(strUrl);
-                myRequest.Method = "HEAD";
+                myRequest.Method = "GET";
                 myRequest.Timeout = 2000;  //超时时间2秒
                 HttpWebResponse res = (HttpWebResponse)myRequest.GetResponse();
                 return (res.StatusCode == HttpStatusCode.OK);
             }
-            catch
+            catch(Exception ex)
             {
                 return false;
             }
